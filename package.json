@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/The-HMI-Guy/AlchemyUniversity-Week4-UnitTesting/issues"
   },
-  "homepage": "https://github.com/The-HMI-Guy/AlchemyUniversity-Week4-UnitTesting#readme"
+  "homepage": "https://github.com/The-HMI-Guy/AlchemyUniversity-Week4-UnitTesting#readme",
+  "devDependencies": {
+    "hardhat": "^2.12.6"
+  }
 }
