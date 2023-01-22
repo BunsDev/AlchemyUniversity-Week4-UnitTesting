@@ -1,6 +1,7 @@
 const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
-const { expect } = require("chai");
+const { expect, assert } = require("chai");
 const { ethers } = require("hardhat");
+const { assertHardhatInvariant } = require("hardhat/internal/core/errors");
 
 describe("Faucet", function () {
   // We define a fixture to reuse the same setup in every test.
@@ -10,12 +11,14 @@ describe("Faucet", function () {
     const Faucet = await ethers.getContractFactory("Faucet");
     const faucet = await Faucet.deploy();
 
-    const [owner] = await ethers.getSigners();
+    const [owner, signer2] = await ethers.getSigners();
 
     let withdrawAmount = ethers.utils.parseUnits("1", "ether");
 
-    console.log("Signer 1 address: ", owner.address);
-    return { faucet, owner, withdrawAmount };
+    // console.log("Signer 1 address: ", owner.address);
+    // console.log("Signer 2 address: ", signer2.address);
+    // console.log(faucet.address);
+    return { faucet, owner, withdrawAmount, signer2 };
   }
 
   it("should deploy and set the owner correctly", async function () {
@@ -30,5 +33,16 @@ describe("Faucet", function () {
       deployContractAndSetVariables
     );
     await expect(faucet.withdraw(withdrawAmount)).to.be.reverted;
+  });
+  it("should not allow non-owner accounts to call said functions", async function () {
+    const { faucet, owner, signer2 } = await loadFixture(
+      deployContractAndSetVariables
+    );
+    await expect(faucet.connect(signer2).withdrawAll()).to.be.reverted;
+  });
+  it("should check that the contract actually self destructed", async function () {
+    const { faucet, owner } = await loadFixture(deployContractAndSetVariables);
+    await faucet.destroyFaucet();
+    expect(await ethers.provider.getCode(faucet.address)).to.equal("0x");
   });
 });
