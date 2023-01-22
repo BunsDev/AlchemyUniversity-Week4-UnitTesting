@@ -1,0 +1,20 @@
+{
+  "name": "alchemyuniversity-week4-unittesting",
+  "version": "1.0.0",
+  "description": "We will be setting up some simple tests on a Faucet.sol smart contract while covering some of the different aspects of Solidity testing using JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/The-HMI-Guy/AlchemyUniversity-Week4-UnitTesting.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/The-HMI-Guy/AlchemyUniversity-Week4-UnitTesting/issues"
+  },
+  "homepage": "https://github.com/The-HMI-Guy/AlchemyUniversity-Week4-UnitTesting#readme"
+}
