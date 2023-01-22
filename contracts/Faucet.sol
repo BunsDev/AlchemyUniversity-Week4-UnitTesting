@@ -8,6 +8,8 @@ contract Faucet {
         owner = payable(msg.sender);
     }
 
+    event FallbackCalled(address);
+
     function withdraw(uint256 _amount) public payable {
         // users can only withdraw .1 ETH at a time, feel free to change this!
         require(_amount <= 100000000000000000);
@@ -22,6 +24,10 @@ contract Faucet {
 
     function destroyFaucet() public onlyOwner {
         selfdestruct(owner);
+    }
+
+    receive() external payable {
+        emit FallbackCalled(msg.sender);
     }
 
     modifier onlyOwner() {
