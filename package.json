@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/The-HMI-Guy/AlchemyUniversity-Week4-UnitTesting#readme",
   "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.1",
     "hardhat": "^2.12.6"
   }
 }
