@@ -20,10 +20,7 @@ describe("Faucet", function () {
       faucet.address
     );
     let ownerBalanceBefore = await ethers.provider.getBalance(owner.address);
-    console.log(ownerBalanceBefore);
-    // console.log("Signer 1 address: ", owner.address);
-    // console.log("Signer 2 address: ", signer2.address);
-    // console.log(faucet.address);
+
     return {
       faucet,
       owner,
@@ -62,7 +59,7 @@ describe("Faucet", function () {
     const { faucet, owner } = await loadFixture(deployContractAndSetVariables);
 
     await faucet.withdrawAll();
-    console.log(await ethers.provider.getBalance(owner.address));
+
     expect(
       await (await ethers.provider.getBalance(owner.address)).toString()
     ).to.equal("9999999226039357158946");
